@@ -1,8 +1,381 @@
-
 <!DOCTYPE html>
-<html>
-<head><title>My Site</title></head>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>हरी मेडिकल एंड प्रोविजन स्टोर — खातीपुरा, जयपुर</title>
+<meta name="description" content="हरी मेडिकल एंड प्रोविजन स्टोर, खातीपुरा, जयपुर। दवाइयां और रोज़मर्रा की ज़रूरत का सामान। कॉल करें 9667750280।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#D6273C;
+    --red-dark:#A81C2C;
+    --green:#0F8A45;
+    --green-dark:#0B6B36;
+    --gold:#FFB800;
+    --ink:#241512;
+    --muted:#6B5B57;
+    --white:#FFFFFF;
+    --cream:#FFF8ED;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background:
+      repeating-linear-gradient(135deg, #FFF2D8 0px, #FFF2D8 22px, #FFEAC2 22px, #FFEAC2 44px);
+    color:var(--ink);
+    font-family:'Hind', system-ui, sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:6vw 4vw;
+  }
+
+  .card{
+    width:100%;
+    max-width:560px;
+    background:var(--white);
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 18px 40px rgba(168,28,44,0.25);
+    border:4px solid var(--gold);
+  }
+
+  /* ribbon badge */
+  .ribbon{
+    position:absolute;
+    top:16px;
+    right:-42px;
+    background:var(--green);
+    color:var(--white);
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.02em;
+    padding:6px 48px;
+    transform:rotate(38deg);
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+    z-index:3;
+  }
+  .ribbon.closed{
+    background:var(--muted);
+  }
+
+  .photo{
+    width:100%;
+    aspect-ratio:1080 / 800;
+    height:auto;
+    object-fit:cover;
+    display:block;
+  }
+
+  .banner{
+    background:linear-gradient(120deg, var(--red) 0%, var(--red-dark) 100%);
+    padding:clamp(22px, 6vw, 32px) clamp(24px, 6vw, 44px) 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 90% 0%, rgba(255,255,255,0.18), transparent 55%);
+  }
+
+  .cross{
+    width:46px;
+    height:46px;
+    position:relative;
+    margin-bottom:14px;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,0.25));
+  }
+  .cross::before, .cross::after{
+    content:"";
+    position:absolute;
+    background:var(--white);
+    border-radius:4px;
+    transition:background 0.3s ease;
+  }
+  .cross::before{ top:0; left:17px; width:12px; height:46px; }
+  .cross::after{ top:17px; left:0; width:46px; height:12px; }
+
+  .cross.status-open::before,
+  .cross.status-open::after{
+    background:#3CE87A;
+    animation:glowGreen 1.6s ease-in-out infinite;
+  }
+  .cross.status-closed::before,
+  .cross.status-closed::after{
+    background:#FF5C5C;
+    animation:glowRed 1.6s ease-in-out infinite;
+  }
+
+  @keyframes glowGreen{
+    0%, 100% { filter:drop-shadow(0 0 2px rgba(60,232,122,0.4)); opacity:1; }
+    50%      { filter:drop-shadow(0 0 12px rgba(60,232,122,1)); opacity:0.55; }
+  }
+  @keyframes glowRed{
+    0%, 100% { filter:drop-shadow(0 0 2px rgba(255,92,92,0.4)); opacity:1; }
+    50%      { filter:drop-shadow(0 0 12px rgba(255,92,92,1)); opacity:0.55; }
+  }
+
+  .eyebrow{
+    letter-spacing:0.02em;
+    font-size:14px;
+    font-weight:600;
+    color:var(--gold);
+    margin:0 0 6px;
+    position:relative;
+  }
+
+  h1{
+    font-family:'Baloo 2', 'Hind', sans-serif;
+    font-weight:700;
+    font-size:clamp(24px, 6.5vw, 32px);
+    line-height:1.25;
+    margin:0 0 10px;
+    color:var(--white);
+    position:relative;
+  }
+
+  .tagline-main{
+    font-family:'Baloo 2', 'Hind', sans-serif;
+    font-size:clamp(16px, 4.5vw, 19px);
+    font-weight:700;
+    color:var(--gold);
+    margin:0 0 6px;
+    position:relative;
+  }
+
+  .tagline{
+    font-size:16px;
+    font-weight:500;
+    color:#FFE1E5;
+    margin:0;
+    max-width:40ch;
+    position:relative;
+  }
+
+  .body{
+    padding:clamp(22px, 6vw, 34px) clamp(24px, 6vw, 44px) clamp(26px, 6vw, 40px);
+  }
+
+  .info{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding:18px 16px;
+    background:var(--cream);
+    border:1.5px dashed #E8C77A;
+    border-radius:14px;
+    margin-bottom:24px;
+  }
+  .info-row{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .info-label{
+    font-size:13px;
+    color:var(--muted);
+    font-weight:600;
+    width:64px;
+    flex-shrink:0;
+    padding-top:2px;
+  }
+  .info-value{
+    font-size:16.5px;
+    font-weight:700;
+    color:var(--ink);
+    word-break:break-word;
+  }
+  .info-value a{
+    color:var(--ink);
+    text-decoration:none;
+  }
+
+  .actions{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    width:100%;
+    padding:16px 20px;
+    border-radius:12px;
+    font-size:16.5px;
+    font-weight:700;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    font-family:'Hind', sans-serif;
+    transition:transform 0.12s ease, filter 0.12s ease;
+  }
+  .btn:active{ transform:scale(0.97); }
+
+  .btn-call{
+    background:var(--green);
+    color:var(--white);
+    box-shadow:0 8px 18px rgba(15,138,69,0.35);
+    animation:pulse 2.4s infinite;
+  }
+  .btn-call:hover{ background:var(--green-dark); }
+
+  @keyframes pulse{
+    0%   { box-shadow:0 8px 18px rgba(15,138,69,0.35), 0 0 0 0 rgba(15,138,69,0.45); }
+    70%  { box-shadow:0 8px 18px rgba(15,138,69,0.35), 0 0 0 12px rgba(15,138,69,0); }
+    100% { box-shadow:0 8px 18px rgba(15,138,69,0.35), 0 0 0 0 rgba(15,138,69,0); }
+  }
+
+  .btn-whatsapp{
+    background:#25D366;
+    color:var(--white);
+    box-shadow:0 8px 18px rgba(37,211,102,0.3);
+  }
+  .btn-whatsapp:hover{ filter:brightness(0.95); }
+
+  .btn-directions{
+    background:var(--white);
+    color:var(--red-dark);
+    border:2px solid var(--red);
+  }
+  .btn-directions:hover{ background:#FFF1F2; }
+
+  .icon{
+    font-size:17px;
+    line-height:1;
+  }
+
+  .copied-toast{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--ink);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:100px;
+    font-size:14px;
+    font-weight:600;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.2s ease, transform 0.2s ease;
+  }
+  .copied-toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  footer{
+    text-align:center;
+    margin-top:20px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--muted);
+  }
+</style>
+</head>
 <body>
-<h1>Hello, this is my website</h1>
+
+<div class="card">
+  <div class="ribbon" id="statusRibbon">अभी खुला है</div>
+
+  <img class="photo" src="/shop-photo.jpg" alt="हरी मेडिकल एंड प्रोविजन स्टोर की दुकान">
+
+  <div class="banner">
+    <div class="cross" id="crossIcon" aria-hidden="true"></div>
+    <p class="eyebrow">खातीपुरा, जयपुर</p>
+    <h1>हरी मेडिकल एंड<br>प्रोविजन स्टोर</h1>
+    <p class="tagline-main">स्वास्थ्य का सहारा</p>
+    <p class="tagline">आपके मोहल्ले की दवाई और ज़रूरत की दुकान।</p>
+  </div>
+
+  <div class="body">
+    <div class="info">
+      <div class="info-row">
+        <span class="info-label">पता</span>
+        <span class="info-value">खातीपुरा, जयपुर</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">फ़ोन</span>
+        <span class="info-value"><a href="tel:+919667750280">96677 50280</a></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">समय</span>
+        <span class="info-value">सुबह 7:00 – रात 10:30, प्रतिदिन</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-call" href="tel:+919667750280"><span class="icon">📞</span> अभी कॉल करें</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/919667750280" target="_blank" rel="noopener"><span class="icon">💬</span> व्हाट्सएप पर मैसेज करें</a>
+      <a class="btn btn-directions" href="https://maps.app.goo.gl/UkkYgwZiopgAM9UYA" target="_blank" rel="noopener"><span class="icon">📍</span> रास्ता दिखाएं</a>
+      <button class="btn btn-directions" id="copyBtn" type="button"><span class="icon">📋</span> फ़ोन नंबर कॉपी करें</button>
+    </div>
+
+    <footer>दवाई और ज़रूरत के सामान के लिए रोज़ खुला</footer>
+  </div>
+</div>
+
+<div class="copied-toast" id="toast">फ़ोन नंबर कॉपी हो गया</div>
+
+<script>
+  const copyBtn = document.getElementById('copyBtn');
+  const toast = document.getElementById('toast');
+
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('9667750280');
+    } catch (err) {
+      const temp = document.createElement('input');
+      temp.value = '9667750280';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+    }
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1800);
+  });
+
+  // Store hours: 7:00 AM to 10:30 PM, daily
+  function updateStoreStatus() {
+    const ribbon = document.getElementById('statusRibbon');
+    const cross = document.getElementById('crossIcon');
+    const now = new Date();
+    const openMinutes = 7 * 60;        // 7:00 AM
+    const closeMinutes = 22 * 60 + 30; // 10:30 PM
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+    const isOpen = nowMinutes >= openMinutes && nowMinutes < closeMinutes;
+
+    if (isOpen) {
+      ribbon.textContent = 'अभी खुला है';
+      ribbon.classList.remove('closed');
+      cross.classList.add('status-open');
+      cross.classList.remove('status-closed');
+    } else {
+      ribbon.textContent = 'बंद है';
+      ribbon.classList.add('closed');
+      cross.classList.add('status-closed');
+      cross.classList.remove('status-open');
+    }
+  }
+
+  updateStoreStatus();
+  setInterval(updateStoreStatus, 60000); // recheck every minute
+</script>
+
 </body>
 </html>
